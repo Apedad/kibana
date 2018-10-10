@@ -72,8 +72,9 @@ export class WorkpadTemplates extends React.PureComponent {
     this.setState({ searchTerm, filterTags });
   };
 
+  cloneWorkpad = workpad => this.props.cloneWorkpad(workpad).then(() => this.props.onClose());
+
   renderWorkpadTable = ({ rows, pageNumber, totalPages, setPage }) => {
-    const { cloneWorkpad } = this.props;
     const { sortField, sortDirection } = this.state;
 
     const actions = [
@@ -82,7 +83,7 @@ export class WorkpadTemplates extends React.PureComponent {
           <EuiToolTip content="Clone">
             <EuiButtonIcon
               iconType="copy"
-              onClick={() => cloneWorkpad(workpad)}
+              onClick={() => this.cloneWorkpad(workpad)}
               aria-label="Clone Workpad"
             />
           </EuiToolTip>
@@ -102,7 +103,7 @@ export class WorkpadTemplates extends React.PureComponent {
 
           return (
             <EuiButtonEmpty
-              onClick={() => cloneWorkpad(workpad)}
+              onClick={() => this.cloneWorkpad(workpad)}
               aria-label={`Clone workpad template ${workpadName}`}
               type="link"
             >
