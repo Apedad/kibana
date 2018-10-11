@@ -62,7 +62,6 @@ export class WorkpadTemplates extends React.PureComponent {
   };
 
   onSearch = ({ query }) => {
-    console.log(query);
     const clauses = get(query, 'ast._clauses', []);
 
     const filterTags = [];
