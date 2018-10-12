@@ -46,8 +46,8 @@ export class WorkpadTemplates extends React.PureComponent {
   };
 
   state = {
-    sortField: '@timestamp',
-    sortDirection: 'desc',
+    sortField: 'name',
+    sortDirection: 'asc',
     pageSize: 10,
     searchTerm: '',
     filterTags: [],
@@ -231,11 +231,7 @@ export class WorkpadTemplates extends React.PureComponent {
   render() {
     const { sortField, sortDirection, searchTerm, filterTags } = this.state;
 
-    const sortedTemplates = sortByOrder(
-      templates,
-      [sortField, '@timestamp'],
-      [sortDirection, 'desc']
-    );
+    const sortedTemplates = sortByOrder(templates, [sortField, 'name'], [sortDirection, 'asc']);
 
     const filteredTemplates = sortedTemplates.filter(({ name, description, tags }) => {
       const tagMatch = filterTags.length
